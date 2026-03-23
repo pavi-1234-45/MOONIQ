@@ -33,6 +33,7 @@ export default {
           purple: "hsl(var(--electric-purple))",
           green: "hsl(var(--signal-green))",
           red: "hsl(var(--signal-red))",
+          yellow: "hsl(var(--signal-yellow))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
