@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Bell, Activity, User, Menu, X } from "lucide-react";
-import mooniqLogo from "@/assets/mooniq-logo.png";
+import { Moon, Search, Bell, Activity, User, Menu, X } from "lucide-react";
 
 const navItems = ["Dashboard", "Crypto Radar", "Assets", "Trending", "News", "Backtesting", "Alerts", "AI Insights"];
 
@@ -18,14 +17,8 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
-        <div className="flex items-center gap-2.5">
-          <motion.img
-            src={mooniqLogo}
-            alt="MOONIQ Logo"
-            className="w-8 h-8 rounded-lg object-contain"
-            animate={{ filter: ["drop-shadow(0 0 6px hsl(189 100% 50% / 0.4))", "drop-shadow(0 0 12px hsl(189 100% 50% / 0.7))", "drop-shadow(0 0 6px hsl(189 100% 50% / 0.4))"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
+        <div className="flex items-center gap-2">
+          <Moon className="text-primary animate-pulse-glow" size={24} />
           <span className="font-heading text-lg font-bold text-primary text-glow-blue tracking-wider">MOONIQ</span>
         </div>
 

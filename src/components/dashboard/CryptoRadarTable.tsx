@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpDown, Filter } from "lucide-react";
-import AssetDetailPanel from "./AssetDetailPanel";
 
 type HypePhase = "Calm" | "Emerging" | "Peak" | "Cooling";
 
@@ -33,13 +32,13 @@ const mockAssets: CryptoAsset[] = [
 
 const phaseColors: Record<HypePhase, string> = {
   Calm: "text-neon-green border-neon-green/30 bg-neon-green/10",
-  Emerging: "text-neon-yellow border-neon-yellow/30 bg-neon-yellow/10",
+  Emerging: "text-yellow-400 border-yellow-400/30 bg-yellow-400/10",
   Peak: "text-destructive border-destructive/30 bg-destructive/10",
   Cooling: "text-primary border-primary/30 bg-primary/10",
 };
 
 const TrendBar = ({ score }: { score: number }) => {
-  const color = score >= 65 ? "bg-neon-green" : score >= 40 ? "bg-neon-yellow" : "bg-destructive";
+  const color = score >= 65 ? "bg-neon-green" : score >= 40 ? "bg-yellow-400" : "bg-destructive";
   return (
     <div className="flex items-center gap-2">
       <div className="w-20 h-2 rounded-full bg-muted overflow-hidden">
@@ -48,7 +47,7 @@ const TrendBar = ({ score }: { score: number }) => {
           animate={{ width: `${score}%` }}
           transition={{ duration: 1, ease: "easeOut" }}
           className={`h-full rounded-full ${color}`}
-          style={{ boxShadow: score >= 65 ? "0 0 8px hsl(160 100% 50%)" : score >= 40 ? "0 0 8px hsl(42 100% 70%)" : "0 0 8px hsl(348 100% 65%)" }}
+          style={{ boxShadow: score >= 65 ? "0 0 8px #00FFB3" : score >= 40 ? "0 0 8px #facc15" : "0 0 8px #FF4D6D" }}
         />
       </div>
       <span className="text-xs font-mono w-8">{score}%</span>
@@ -60,7 +59,6 @@ const CryptoRadarTable = () => {
   const [sortKey, setSortKey] = useState<keyof CryptoAsset>("trendScore");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
   const [filterPhase, setFilterPhase] = useState<HypePhase | "All">("All");
-  const [selectedAsset, setSelectedAsset] = useState<CryptoAsset | null>(null);
 
   const sorted = [...mockAssets]
     .filter((a) => filterPhase === "All" || a.hypePhase === filterPhase)
@@ -90,97 +88,93 @@ const CryptoRadarTable = () => {
   ];
 
   return (
-    <>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="glass rounded-xl overflow-hidden"
-      >
-        <div className="flex items-center justify-between p-4 border-b border-border/30">
-          <h2 className="font-heading text-sm font-semibold text-primary tracking-wider">CRYPTO RADAR</h2>
-          <div className="flex items-center gap-2">
-            <Filter size={14} className="text-muted-foreground" />
-            {(["All", "Calm", "Emerging", "Peak", "Cooling"] as const).map((phase) => (
-              <button
-                key={phase}
-                onClick={() => setFilterPhase(phase)}
-                className={`text-xs px-2 py-1 rounded-md transition-colors ${filterPhase === phase ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"}`}
-              >
-                {phase}
-              </button>
-            ))}
-          </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="glass rounded-xl overflow-hidden"
+    >
+      <div className="flex items-center justify-between p-4 border-b border-border/30">
+        <h2 className="font-heading text-sm font-semibold text-primary tracking-wider">CRYPTO RADAR</h2>
+        <div className="flex items-center gap-2">
+          <Filter size={14} className="text-muted-foreground" />
+          {(["All", "Calm", "Emerging", "Peak", "Cooling"] as const).map((phase) => (
+            <button
+              key={phase}
+              onClick={() => setFilterPhase(phase)}
+              className={`text-xs px-2 py-1 rounded-md transition-colors ${filterPhase === phase ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              {phase}
+            </button>
+          ))}
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border/20">
-                {headers.map((h) => (
-                  <th
-                    key={h.key}
-                    onClick={() => handleSort(h.key)}
-                    className="px-4 py-3 text-left text-xs text-muted-foreground font-medium cursor-pointer hover:text-foreground transition-colors"
-                  >
-                    <span className="flex items-center gap-1">
-                      {h.label}
-                      <ArrowUpDown size={10} />
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((asset, i) => (
-                <motion.tr
-                  key={asset.symbol}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setSelectedAsset(asset)}
-                  className="border-b border-border/10 hover:bg-muted/30 transition-colors cursor-pointer"
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-border/20">
+              {headers.map((h) => (
+                <th
+                  key={h.key}
+                  onClick={() => handleSort(h.key)}
+                  className="px-4 py-3 text-left text-xs text-muted-foreground font-medium cursor-pointer hover:text-foreground transition-colors"
                 >
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-[10px] font-heading font-bold text-primary">
-                        {asset.symbol.slice(0, 2)}
-                      </div>
-                      <div>
-                        <div className="font-medium">{asset.name}</div>
-                        <div className="text-xs text-muted-foreground">{asset.symbol}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 font-mono text-xs">${asset.price < 1 ? asset.price.toFixed(8) : asset.price.toLocaleString()}</td>
-                  <td className={`px-4 py-3 text-xs font-medium ${asset.change24h >= 0 ? "text-neon-green" : "text-destructive"}`}>
-                    {asset.change24h >= 0 ? "+" : ""}{asset.change24h}%
-                  </td>
-                  <td className="px-4 py-3 text-xs text-muted-foreground">{asset.volume}</td>
-                  <td className="px-4 py-3 text-xs">{asset.mentions.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-xs">{asset.sentiment}%</td>
-                  <td className="px-4 py-3 text-xs">{asset.hype}%</td>
-                  <td className="px-4 py-3 text-xs">{asset.virality}%</td>
-                  <td className="px-4 py-3">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium animate-pulse-glow ${phaseColors[asset.hypePhase]}`}>
-                      {asset.hypePhase}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3"><TrendBar score={asset.trendScore} /></td>
-                  <td className="px-4 py-3">
-                    {asset.pumpSignal && (
-                      <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-destructive/20 text-destructive border border-destructive/30 animate-pulse-glow">
-                        🚀 PUMP
-                      </span>
-                    )}
-                  </td>
-                </motion.tr>
+                  <span className="flex items-center gap-1">
+                    {h.label}
+                    <ArrowUpDown size={10} />
+                  </span>
+                </th>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
-      <AssetDetailPanel asset={selectedAsset} onClose={() => setSelectedAsset(null)} />
-    </>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((asset, i) => (
+              <motion.tr
+                key={asset.symbol}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="border-b border-border/10 hover:bg-muted/30 transition-colors cursor-pointer"
+              >
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-[10px] font-heading font-bold text-primary">
+                      {asset.symbol.slice(0, 2)}
+                    </div>
+                    <div>
+                      <div className="font-medium">{asset.name}</div>
+                      <div className="text-xs text-muted-foreground">{asset.symbol}</div>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-3 font-mono text-xs">${asset.price < 1 ? asset.price.toFixed(8) : asset.price.toLocaleString()}</td>
+                <td className={`px-4 py-3 text-xs font-medium ${asset.change24h >= 0 ? "text-neon-green" : "text-destructive"}`}>
+                  {asset.change24h >= 0 ? "+" : ""}{asset.change24h}%
+                </td>
+                <td className="px-4 py-3 text-xs text-muted-foreground">{asset.volume}</td>
+                <td className="px-4 py-3 text-xs">{asset.mentions.toLocaleString()}</td>
+                <td className="px-4 py-3 text-xs">{asset.sentiment}%</td>
+                <td className="px-4 py-3 text-xs">{asset.hype}%</td>
+                <td className="px-4 py-3 text-xs">{asset.virality}%</td>
+                <td className="px-4 py-3">
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${phaseColors[asset.hypePhase]}`}>
+                    {asset.hypePhase}
+                  </span>
+                </td>
+                <td className="px-4 py-3"><TrendBar score={asset.trendScore} /></td>
+                <td className="px-4 py-3">
+                  {asset.pumpSignal && (
+                    <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-destructive/20 text-destructive border border-destructive/30 animate-pulse-glow">
+                      🚀 PUMP
+                    </span>
+                  )}
+                </td>
+              </motion.tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </motion.div>
   );
 };
 
