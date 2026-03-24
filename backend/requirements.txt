@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+firebase-admin
+requests
+pandas
+python-dotenv
+apscheduler
+cachetools
+httpx
+openai

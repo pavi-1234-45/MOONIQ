@@ -1,0 +1,16 @@
+{
+  "dashboard": "Cruscotto",
+  "crypto_radar": "Radar Cripto",
+  "assets": "Asset",
+  "trending": "Di tendenza",
+  "feeds": "Feed",
+  "news": "Notizie",
+  "backtesting": "Backtesting",
+  "alerts": "Avvisi",
+  "ai_insights": "Approfondimenti IA",
+  "search_assets": "Cerca asset...",
+  "ai_active": "IA Attiva",
+  "log_out": "Esci",
+  "search_language": "Cerca lingua...",
+  "language": "Lingua"
+}

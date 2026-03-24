@@ -1,0 +1,16 @@
+{
+  "dashboard": "ダッシュボード",
+  "crypto_radar": "クリプトレーダー",
+  "assets": "資産",
+  "trending": "トレンド",
+  "feeds": "フィード",
+  "news": "ニュース",
+  "backtesting": "バックテスト",
+  "alerts": "アラート",
+  "ai_insights": "AIインサイト",
+  "search_assets": "資産を検索...",
+  "ai_active": "AI稼働中",
+  "log_out": "ログアウト",
+  "search_language": "言語を検索...",
+  "language": "言語"
+}

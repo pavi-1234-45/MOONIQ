@@ -22,3 +22,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python
+backend/venv/
+backend/__pycache__/
+__pycache__/
+*.pyc
+
+# Next.js
+.next/
+b_caffcB4G90q-1774263303114/.next/
+
+# Environment
+.env
+backend/.env

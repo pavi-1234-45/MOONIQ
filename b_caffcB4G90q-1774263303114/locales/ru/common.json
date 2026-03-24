@@ -1,0 +1,16 @@
+{
+  "dashboard": "Панель управления",
+  "crypto_radar": "Крипто Радар",
+  "assets": "Активы",
+  "trending": "В тренде",
+  "feeds": "Ленты",
+  "news": "Новости",
+  "backtesting": "Бэктестинг",
+  "alerts": "Оповещения",
+  "ai_insights": "ИИ Аналитика",
+  "search_assets": "Поиск активов...",
+  "ai_active": "ИИ Активен",
+  "log_out": "Выйти",
+  "search_language": "Поиск языка...",
+  "language": "Язык"
+}
