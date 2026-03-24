@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { motion, AnimatePresence } from "framer-motion"
@@ -64,9 +66,9 @@ export default function FeedsPage() {
     const fetchAllData = async () => {
       try {
         const [feedsRes, trendRes, newsRes] = await Promise.all([
-          fetch("http://127.0.0.1:8000/api/live-feeds").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/trending").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/news").catch(() => null)
+          fetch(`${API_BASE}/api/live-feeds").catch(() => null),
+          fetch(`${API_BASE}/api/trending").catch(() => null),
+          fetch(`${API_BASE}/api/news").catch(() => null)
         ])
         
         if (feedsRes) {

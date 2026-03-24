@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useEffect, useState } from "react"
 import { Activity, Cpu, Signal, RefreshCw, Twitter, Newspaper, MessageSquare, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -93,7 +95,7 @@ export function AIActivity() {
   useEffect(() => {
     const fetchFeeds = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/live-feeds")
+        const res = await fetch(`${API_BASE}/api/live-feeds")
         if (res.ok) {
           const data = await res.json()
           setFeeds(data)

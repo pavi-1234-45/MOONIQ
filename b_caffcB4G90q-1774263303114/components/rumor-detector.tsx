@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { AlertTriangle, Radio, TrendingUp, Shield, Flame, Eye, Clock, ExternalLink, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -204,7 +206,7 @@ export function RumorDetector() {
 
   const fetchAlerts = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/rumor-alerts")
+      const res = await fetch(`${API_BASE}/api/rumor-alerts")
       if (!res.ok) return
       const data = await res.json()
       if (data && data.length > 0) {

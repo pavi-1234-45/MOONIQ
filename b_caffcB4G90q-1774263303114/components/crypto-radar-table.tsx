@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { ArrowUpDown, ArrowUp, ArrowDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -235,10 +237,10 @@ export function CryptoRadarTable({ onSelectAsset }: CryptoRadarTableProps) {
     const fetchData = async () => {
       try {
         const [pricesRes, socialRes, hypeRes, trendRes] = await Promise.all([
-          fetch("http://127.0.0.1:8000/api/prices").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/social").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/hype").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/prices").catch(() => null),
+          fetch(`${API_BASE}/api/social").catch(() => null),
+          fetch(`${API_BASE}/api/hype").catch(() => null),
+          fetch(`${API_BASE}/api/trend").catch(() => null)
         ])
         
         if (!pricesRes || !pricesRes.ok) throw new Error("Backend not reachable");

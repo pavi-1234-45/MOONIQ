@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useRef, useEffect } from "react"
 import { X, Send, Bot, User, Loader2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -53,7 +55,7 @@ export function AIChatModal({ open, onClose }: AIChatModalProps) {
     setLoading(true)
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/ai-chat", {
+      const res = await fetch(`${API_BASE}/api/ai-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMsg.content }),

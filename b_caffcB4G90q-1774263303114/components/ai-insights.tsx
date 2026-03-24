@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Brain, Sparkles, TrendingUp, MessageCircle } from "lucide-react"
@@ -59,7 +61,7 @@ export function AIInsights() {
       try {
         const coins = ["BTC", "ETH", "SOL"]
         const results = await Promise.all(coins.map(c => 
-          fetch(`http://127.0.0.1:8000/api/predict/${c}`).then(r => r.json())
+          fetch(`${API_BASE}/api/predict/${c}`).then(r => r.json())
         ))
         
         const newInsights = results.map(pred => ({

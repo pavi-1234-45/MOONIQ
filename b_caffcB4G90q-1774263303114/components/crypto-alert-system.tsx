@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { Bell, TrendingUp, Sun, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -21,8 +23,8 @@ export function CryptoAlertSystem() {
     const fetchTrending = async () => {
       try {
         const [pricesRes, trendRes] = await Promise.all([
-          fetch("http://127.0.0.1:8000/api/prices").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/prices").catch(() => null),
+          fetch(`${API_BASE}/api/trend").catch(() => null)
         ])
         
         if (!pricesRes || !trendRes) return;
@@ -62,7 +64,7 @@ export function CryptoAlertSystem() {
     setLoading(true)
     setStatus(null)
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/whatsapp/${type}`)
+      const res = await fetch(`${API_BASE}/api/whatsapp/${type}`)
       const data = await res.json()
       
       if (data.status === "success") {

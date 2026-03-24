@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { TrendingUp, Flame, Zap, Rocket, Dog, Activity } from "lucide-react"
@@ -252,7 +254,7 @@ export function MetricCards3D() {
   useEffect(() => {
     const fetchGas = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/etherscan")
+        const res = await fetch(`${API_BASE}/api/etherscan")
         if (!res.ok) return
         const data = await res.json()
         if (data && data.FastGasPrice) {

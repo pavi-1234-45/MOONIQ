@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect, useCallback, use } from "react"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { 
@@ -58,7 +60,7 @@ export default function AIModelTreePage({ params }: { params: Promise<{ coin: st
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/model-tree/${coin}`)
+      const res = await fetch(`${API_BASE}/api/model-tree/${coin}`)
       const data = await res.json()
       setTreeData(data)
       

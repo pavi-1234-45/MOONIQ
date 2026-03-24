@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { Rocket, TrendingUp, Zap, BarChart3 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -80,9 +82,9 @@ export function PumpSignals() {
     const fetchSignals = async () => {
       try {
         const [socialRes, hypeRes, trendRes] = await Promise.all([
-          fetch("http://127.0.0.1:8000/api/social").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/hype").catch(() => null),
-          fetch("http://127.0.0.1:8000/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/social").catch(() => null),
+          fetch(`${API_BASE}/api/hype").catch(() => null),
+          fetch(`${API_BASE}/api/trend").catch(() => null)
         ])
         
         if (!hypeRes || !hypeRes.ok) return

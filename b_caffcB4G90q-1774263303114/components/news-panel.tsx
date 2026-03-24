@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { ExternalLink, TrendingUp, TrendingDown, Minus, X, BookOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -85,7 +87,7 @@ export function NewsPanel() {
 
   const fetchNews = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/news")
+      const res = await fetch(`${API_BASE}/api/news")
       if (!res.ok) return
       const data = await res.json()
       if (data && data.length > 0) {

@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -12,7 +14,7 @@ async function translateText(text: string, targetLang: string): Promise<string> 
   }
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/translate", {
+    const res = await fetch(`${API_BASE}/api/translate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, target_language: targetLang }),

@@ -1,5 +1,7 @@
 "use client"
 
+import { API_BASE } from "@/lib/api"
+
 import { useState, useEffect } from "react"
 import { Bell, BellRing, Settings, Check, X, Flame } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -73,7 +75,7 @@ export function BotAlerts() {
   useEffect(() => {
     const fetchDexBoosts = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/dex-boosts")
+        const res = await fetch(`${API_BASE}/api/dex-boosts")
         if (!res.ok) return
         const boosts = await res.json()
         if (boosts && boosts.length > 0) {
