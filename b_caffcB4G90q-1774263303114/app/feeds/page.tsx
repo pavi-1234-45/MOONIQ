@@ -66,9 +66,9 @@ export default function FeedsPage() {
     const fetchAllData = async () => {
       try {
         const [feedsRes, trendRes, newsRes] = await Promise.all([
-          fetch(`${API_BASE}/api/live-feeds").catch(() => null),
-          fetch(`${API_BASE}/api/trending").catch(() => null),
-          fetch(`${API_BASE}/api/news").catch(() => null)
+          fetch(`${API_BASE}/api/live-feeds`).catch(() => null),
+          fetch(`${API_BASE}/api/trending`).catch(() => null),
+          fetch(`${API_BASE}/api/news`).catch(() => null)
         ])
         
         if (feedsRes) {

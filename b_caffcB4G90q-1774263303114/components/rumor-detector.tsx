@@ -206,7 +206,7 @@ export function RumorDetector() {
 
   const fetchAlerts = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/rumor-alerts")
+      const res = await fetch(`${API_BASE}/api/rumor-alerts`)
       if (!res.ok) return
       const data = await res.json()
       if (data && data.length > 0) {

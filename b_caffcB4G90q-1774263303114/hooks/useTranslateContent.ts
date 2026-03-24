@@ -14,7 +14,7 @@ async function translateText(text: string, targetLang: string): Promise<string> 
   }
 
   try {
-    const res = await fetch(`${API_BASE}/api/translate", {
+    const res = await fetch(`${API_BASE}/api/translate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, target_language: targetLang }),

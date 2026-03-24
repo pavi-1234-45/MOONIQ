@@ -95,7 +95,7 @@ export function AIActivity() {
   useEffect(() => {
     const fetchFeeds = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/live-feeds")
+        const res = await fetch(`${API_BASE}/api/live-feeds`)
         if (res.ok) {
           const data = await res.json()
           setFeeds(data)

@@ -75,7 +75,7 @@ export function BotAlerts() {
   useEffect(() => {
     const fetchDexBoosts = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/dex-boosts")
+        const res = await fetch(`${API_BASE}/api/dex-boosts`)
         if (!res.ok) return
         const boosts = await res.json()
         if (boosts && boosts.length > 0) {

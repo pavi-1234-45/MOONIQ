@@ -82,9 +82,9 @@ export function PumpSignals() {
     const fetchSignals = async () => {
       try {
         const [socialRes, hypeRes, trendRes] = await Promise.all([
-          fetch(`${API_BASE}/api/social").catch(() => null),
-          fetch(`${API_BASE}/api/hype").catch(() => null),
-          fetch(`${API_BASE}/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/social`).catch(() => null),
+          fetch(`${API_BASE}/api/hype`).catch(() => null),
+          fetch(`${API_BASE}/api/trend`).catch(() => null)
         ])
         
         if (!hypeRes || !hypeRes.ok) return

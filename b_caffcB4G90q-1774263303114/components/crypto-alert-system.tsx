@@ -23,8 +23,8 @@ export function CryptoAlertSystem() {
     const fetchTrending = async () => {
       try {
         const [pricesRes, trendRes] = await Promise.all([
-          fetch(`${API_BASE}/api/prices").catch(() => null),
-          fetch(`${API_BASE}/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/prices`).catch(() => null),
+          fetch(`${API_BASE}/api/trend`).catch(() => null)
         ])
         
         if (!pricesRes || !trendRes) return;

@@ -87,7 +87,7 @@ export function NewsPanel() {
 
   const fetchNews = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/news")
+      const res = await fetch(`${API_BASE}/api/news`)
       if (!res.ok) return
       const data = await res.json()
       if (data && data.length > 0) {

@@ -237,10 +237,10 @@ export function CryptoRadarTable({ onSelectAsset }: CryptoRadarTableProps) {
     const fetchData = async () => {
       try {
         const [pricesRes, socialRes, hypeRes, trendRes] = await Promise.all([
-          fetch(`${API_BASE}/api/prices").catch(() => null),
-          fetch(`${API_BASE}/api/social").catch(() => null),
-          fetch(`${API_BASE}/api/hype").catch(() => null),
-          fetch(`${API_BASE}/api/trend").catch(() => null)
+          fetch(`${API_BASE}/api/prices`).catch(() => null),
+          fetch(`${API_BASE}/api/social`).catch(() => null),
+          fetch(`${API_BASE}/api/hype`).catch(() => null),
+          fetch(`${API_BASE}/api/trend`).catch(() => null)
         ])
         
         if (!pricesRes || !pricesRes.ok) throw new Error("Backend not reachable");

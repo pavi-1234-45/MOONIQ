@@ -254,7 +254,7 @@ export function MetricCards3D() {
   useEffect(() => {
     const fetchGas = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/etherscan")
+        const res = await fetch(`${API_BASE}/api/etherscan`)
         if (!res.ok) return
         const data = await res.json()
         if (data && data.FastGasPrice) {
